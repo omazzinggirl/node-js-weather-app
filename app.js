@@ -1,15 +1,28 @@
+const process = require('process')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
-geocode('Vadodara', (error, response) => {
-    console.log('Error :: ', error)
-    console.log('Data :: ', response)
-})
+const location_name = process.argv[2]
 
-forecast(22.3, 73.2,(error, response) => {
-    console.log('Error :: ', error)
-    console.log('Data :: ', response)
-})
+if(location_name){
+    geocode(location_name, (error, geocodeResponse) => {
+        if (error){
+            return console.log('Error :: ', error)
+        }
+        forecast(geocodeResponse.latitude, geocodeResponse.longitude, (error, forecastResponse) => {
+            if (error){
+                return console.log('Error :: ', error)
+            }
+            console.log('Geocode Response :: ', geocodeResponse)
+            console.log('Forecast Response :: ', forecastResponse)
+        })
+    })
+}
+else {
+    console.log('Please provide a location name!')
+}
+
+
 
 
 
