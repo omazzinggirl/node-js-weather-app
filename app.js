@@ -1,6 +1,12 @@
 const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
 
 geocode('Vadodara', (error, response) => {
+    console.log('Error :: ', error)
+    console.log('Data :: ', response)
+})
+
+forecast(22.3, 73.2,(error, response) => {
     console.log('Error :: ', error)
     console.log('Data :: ', response)
 })
@@ -13,7 +19,7 @@ geocode('Vadodara', (error, response) => {
 
 
 
-// const weatherURL = 'http://api.weatherstack.com/current?access_key=e9976ce3f33c5dba146394e164769b16&query=37.8267,-122.4233'
+// const weatherURL = 'http://api.weatherstack.com/current?access_key=e9976ce3f33c5dba146394e164769b16&query=22.3,73.2'
 
 // request({ url: weatherURL, json: true }, (error, response) => {
 //     if(error) {
